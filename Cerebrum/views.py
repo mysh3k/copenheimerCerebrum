@@ -15,7 +15,7 @@ class AssignTask(View):
             response = Task.objects.filter(finished=False, assign_date__lte=today_delta(48)).first()
             response.assign_date = today_date()
             response.recipient = recipient
-            # response.save()
+            response.save()
             serialized_response = serializers.serialize('json', [response])
             return JsonResponse(serialized_response, safe=False)
         else:
@@ -24,14 +24,14 @@ class AssignTask(View):
 
             if c+1 <= 255:
                 new_task = Task(sequence1=a, sequence2=b, sequence3=c+1, assign_date=today_date(), recipient=recipient)
-                # new_task.save()
+                new_task.save()
 
             elif b+1 <= 255:
                 c = 0
                 if a == 172 and 16 <= b+1 <= 31:
                     b = 31
                 new_task = Task(sequence1=a, sequence2=b+1, sequence3=c, assign_date=today_date(), recipient=recipient)
-                # new_task.save()
+                new_task.save()
 
             elif a <= 255:
                 c = 0
@@ -39,12 +39,12 @@ class AssignTask(View):
                 if a+1 == 10:
                     a += 1
                 new_task = Task(sequence1=a+1, sequence2=b, sequence3=c, assign_date=today_date(), recipient=recipient)
-                # new_task.save()
+                new_task.save()
 
             else:
                 a, b, c = 1, 0, 0
                 new_task = Task(sequence1=a, sequence2=b, sequence3=c, assign_date=today_date(), recipient=recipient)
-                # new_task.save()
+                new_task.save()
             serialized_response = serializers.serialize('json', [new_task])
             return JsonResponse(serialized_response, safe=False)
 
