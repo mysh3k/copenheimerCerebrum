@@ -52,7 +52,8 @@ class AssignTask(View):
 class TaskFinish(View):
     def post(self, request):
         data = json.loads(request.body)
-        task = Task.objects.get(sequence1=data['sequence1'], sequence2=data['sequence2'], sequence3=data['sequence3'])
+        print(data)
+        task = Task.objects.get(sequence1=data['fields']['sequence1'], sequence2=data['fields']['sequence2'], sequence3=data['fields']['sequence3'])
         task.finished = True
         task.save()
         return render(request, 'empty.html')
@@ -61,7 +62,6 @@ class TaskFinish(View):
 class Feedback(View):
     def post(self, request, ip, recipient):
         data = json.loads(request.body)
-        print(recipient, data['version']['name'])
         players = []
         for player in data['players']['sample']:
             if len(player['name']) <= 16:
