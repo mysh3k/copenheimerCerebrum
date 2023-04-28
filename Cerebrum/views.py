@@ -28,6 +28,8 @@ class AssignTask(View):
 
             elif b+1 <= 255:
                 c = 0
+                if a == 172 and 16 <= b+1 <= 31:
+                    b = 31
                 new_task = Task(sequence1=a, sequence2=b+1, sequence3=c, assign_date=today_date(), recipient=recipient)
                 # new_task.save()
 
