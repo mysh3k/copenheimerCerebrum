@@ -19,4 +19,5 @@ class Server(models.Model):
     players_online = models.IntegerField()
     players_maximum = models.IntegerField()
     recipient = models.CharField(null=True, default=None, max_length=32)
+    find_date = models.DateTimeField()
 

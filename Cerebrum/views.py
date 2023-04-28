@@ -66,6 +66,6 @@ class Feedback(View):
                 players = None
                 break
         s = Server(ip_address=ip, version_name=data['version']['name'], players_online=data['players']['online'],
-                   players_maximum=data['version']['max'], recipient=recipient, players=players)
+                   players_maximum=data['version']['max'], recipient=recipient, players=players, find_date=today_date())
         s.save()
         return render(request, 'empty.html')
