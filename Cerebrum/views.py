@@ -34,6 +34,8 @@ class AssignTask(View):
             elif a <= 255:
                 c = 0
                 b = 0
+                if a+1 == 10:
+                    a += 1
                 new_task = Task(sequence1=a+1, sequence2=b, sequence3=c, assign_date=today_date(), recipient=recipient)
                 # new_task.save()
 
